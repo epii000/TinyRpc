@@ -13,5 +13,5 @@ public interface RpcConstant {
     /**
      * 默认服务版本
      */
-    String DEAULT_SERVICE_VERSION = "1.0";
+    String DEFAULT_SERVICE_VERSION = "1.0";
 }

@@ -22,5 +22,5 @@ public class RpcRequest implements Serializable {
 
     private Object[] args;
 
-    private String serviceVersion = RpcConstant.DEAULT_SERVICE_VERSION;
+    private String serviceVersion = RpcConstant.DEFAULT_SERVICE_VERSION;
 }
