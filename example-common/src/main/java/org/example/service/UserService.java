@@ -12,4 +12,8 @@ public interface UserService {
      * @return
      */
     User getUser(User user) throws IOException;
+
+    default short getNumber() {
+        return 1;
+    }
 }

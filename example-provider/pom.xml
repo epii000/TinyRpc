@@ -22,7 +22,7 @@
     </dependency>
     <dependency>
       <groupId>org.example</groupId>
-      <artifactId>tinyRpc-easy</artifactId>
+      <artifactId>tinyRpc-core</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
