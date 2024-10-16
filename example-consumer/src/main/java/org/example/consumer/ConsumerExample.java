@@ -1,18 +1,17 @@
 package org.example.consumer;
 
-import org.example.config.RpcConfig;
+import org.example.bootstrap.ConsumerBootstrap;
 import org.example.model.User;
 import org.example.proxy.ServiceProxyFactory;
 import org.example.service.UserService;
-import org.example.utils.ConfigUtils;
 
 import java.io.IOException;
 
 public class ConsumerExample {
 
     public static void main(String[] args) throws IOException {
-//        RpcConfig rpc = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
-//        System.out.println(rpc);
+        // 服务提供者初始化
+        ConsumerBootstrap.init();
 
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
