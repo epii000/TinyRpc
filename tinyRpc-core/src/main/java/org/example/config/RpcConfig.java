@@ -1,6 +1,8 @@
 package org.example.config;
 
 import lombok.Data;
+import org.example.fault.retry.RetryStrategyKeys;
+import org.example.loadbalancer.LoadBalancerKeys;
 import org.example.serializer.SerializerKeys;
 
 /**
@@ -20,6 +22,10 @@ public class RpcConfig {
     private boolean mock = false;
 
     private String serializer = SerializerKeys.JDK;
+
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    private String retryStrategy = RetryStrategyKeys.NO;
 
     private RegistryConfig registryConfig = new RegistryConfig();
 }

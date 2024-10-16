@@ -4,6 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import org.example.RpcApplication;
 import org.example.config.RpcConfig;
 import org.example.constant.RpcConstant;
+import org.example.fault.retry.RetryStrategy;
+import org.example.fault.retry.RetryStrategyFactory;
+import org.example.loadbalancer.LoadBalancer;
+import org.example.loadbalancer.LoadBalancerFactory;
 import org.example.model.RpcRequest;
 import org.example.model.RpcResponse;
 import org.example.model.ServiceMetaInfo;
@@ -16,7 +20,9 @@ import org.example.server.tcp.VertxTcpClient;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
@@ -52,7 +58,6 @@ public class ServiceProxy implements InvocationHandler {
             if (CollUtil.isEmpty(serviceMetaInfoList)) {
                 throw new RuntimeException("暂无服务地址");
             }
-            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
 
 //              消费者发送http请求
 //            try (HttpResponse httpResponse = HttpRequest.post(selectedServiceMetaInfo.getServiceAddress())
@@ -63,8 +68,21 @@ public class ServiceProxy implements InvocationHandler {
 //                RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
 //                return rpcResponse.getData();
 //            }
+
+            // 负载均衡
+            LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+            // 将调用方法名（请求路径）作为负载均衡的参数
+            Map<String, Object> requestParams = new HashMap<>();
+            requestParams.put("methodName", rpcRequest.getMethodName());
+            ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
+
             // 发送TCP 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            // 使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
+//            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
             return rpcResponse.getData();
         } catch (Exception e) {
            throw new RuntimeException("调用失败:" + e.getMessage());
