@@ -2,6 +2,7 @@ package org.example.config;
 
 import lombok.Data;
 import org.example.fault.retry.RetryStrategyKeys;
+import org.example.fault.tolerant.TolerantStrategyKeys;
 import org.example.loadbalancer.LoadBalancerKeys;
 import org.example.serializer.SerializerKeys;
 
@@ -26,6 +27,8 @@ public class RpcConfig {
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
     private String retryStrategy = RetryStrategyKeys.NO;
+
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
     private RegistryConfig registryConfig = new RegistryConfig();
 }
