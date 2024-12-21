@@ -1,4 +1,0 @@
-jdk=serializer.com.epii000.JdkSerializer
-hessian=serializer.com.epii000.HessianSerializer
-json=serializer.com.epii000.JsonSerializer
-kryo=serializer.com.epii000.KryoSerializer

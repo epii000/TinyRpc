@@ -1,4 +1,0 @@
-failBack=tolerant.fault.com.epii000.FailBackTolerantStrategy
-failFast=tolerant.fault.com.epii000.FailFastTolerantStrategy
-failOver=tolerant.fault.com.epii000.FailOverTolerantStrategy
-failSafe=tolerant.fault.com.epii000.FailSafeTolerantStrategy

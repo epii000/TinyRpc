@@ -1,3 +1,0 @@
-roundRobin=loadbalancer.com.epii000.RoundRobinLoadBalancer
-random=loadbalancer.com.epii000.RandomLoadBalancer
-consistentHash=loadbalancer.com.epii000.ConsistentHashLoadBalancer

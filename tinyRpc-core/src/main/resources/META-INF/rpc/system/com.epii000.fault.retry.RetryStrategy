@@ -1,0 +1,2 @@
+no=com.epii000.retry.fault.NoRetryStrategy
+fixedInterval=com.epii000.retry.fault.FixedIntervalRetryStrategy

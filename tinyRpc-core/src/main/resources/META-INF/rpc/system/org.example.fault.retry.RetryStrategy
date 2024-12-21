@@ -1,2 +1,0 @@
-no=retry.fault.com.epii000.NoRetryStrategy
-fixedInterval=retry.fault.com.epii000.FixedIntervalRetryStrategy
