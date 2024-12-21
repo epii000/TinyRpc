@@ -1,4 +1,4 @@
-failBack=org.example.fault.tolerant.FailBackTolerantStrategy
-failFast=org.example.fault.tolerant.FailFastTolerantStrategy
-failOver=org.example.fault.tolerant.FailOverTolerantStrategy
-failSafe=org.example.fault.tolerant.FailSafeTolerantStrategy
+failBack=tolerant.fault.com.epii000.FailBackTolerantStrategy
+failFast=tolerant.fault.com.epii000.FailFastTolerantStrategy
+failOver=tolerant.fault.com.epii000.FailOverTolerantStrategy
+failSafe=tolerant.fault.com.epii000.FailSafeTolerantStrategy

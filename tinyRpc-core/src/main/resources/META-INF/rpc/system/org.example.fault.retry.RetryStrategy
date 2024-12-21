@@ -1,2 +1,2 @@
-no=org.example.fault.retry.NoRetryStrategy
-fixedInterval=org.example.fault.retry.FixedIntervalRetryStrategy
+no=retry.fault.com.epii000.NoRetryStrategy
+fixedInterval=retry.fault.com.epii000.FixedIntervalRetryStrategy

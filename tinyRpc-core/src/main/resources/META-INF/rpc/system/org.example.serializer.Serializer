@@ -1,4 +1,4 @@
-jdk=org.example.serializer.JdkSerializer
-hessian=org.example.serializer.HessianSerializer
-json=org.example.serializer.JsonSerializer
-kryo=org.example.serializer.KryoSerializer
+jdk=serializer.com.epii000.JdkSerializer
+hessian=serializer.com.epii000.HessianSerializer
+json=serializer.com.epii000.JsonSerializer
+kryo=serializer.com.epii000.KryoSerializer
